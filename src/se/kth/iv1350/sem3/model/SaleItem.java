@@ -13,7 +13,7 @@ public class SaleItem {
     /**
      * Creates an object handling the item information during a sale.
      *
-     * @param item
+     * @param item An item from the inventory system.
      */
     public SaleItem(ItemDTO item) {
         this.item = item;
@@ -23,7 +23,7 @@ public class SaleItem {
     /**
      * Gets the item being bought.
      *
-     * @return
+     * @return The item being processed.
      */
     public ItemDTO getItem() {
         return item;
@@ -32,7 +32,7 @@ public class SaleItem {
     /**
      * Gets the quantity of the item being bought.
      *
-     * @return
+     * @return The quantity of the item.
      */
     public int getQuantity() {
         return quantity;

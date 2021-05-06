@@ -11,8 +11,8 @@ public class ItemDisplayDTO {
     /**
      * Creates a new object containing display information for an item.
      *
-     * @param description
-     * @param price
+     * @param description A description of the item.
+     * @param price A price of the item.
      */
     public ItemDisplayDTO(String description, float price) {
         this.description = description;
@@ -22,7 +22,7 @@ public class ItemDisplayDTO {
     /**
      * Gets the description of the item.
      *
-     * @return
+     * @return The item description.
      */
     public String getDescription() {
         return description;
@@ -31,7 +31,7 @@ public class ItemDisplayDTO {
     /**
      * Gets the price of the item.
      *
-     * @return
+     * @return The item price.
      */
     public float getPrice() {
         return price;

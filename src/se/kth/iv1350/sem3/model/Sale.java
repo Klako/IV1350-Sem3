@@ -24,8 +24,8 @@ public class Sale {
     /**
      * Initializes a new sale.
      *
-     * @param inventory
-     * @param accounting
+     * @param inventory An inventory system integration
+     * @param saleInfoHandler A handler for the end sale information. 
      */
     public Sale(Inventory inventory, SaleInfoHandler saleInfoHandler) {
         this.saleInfoHandler = saleInfoHandler;
@@ -36,8 +36,8 @@ public class Sale {
     /**
      * Adds a new item of the given type to the sale.
      *
-     * @param itemId
-     * @return Information about the added items.
+     * @param itemId The inventory id of an item.
+     * @return Information about the added item.
      */
     public ItemDisplayDTO addItem(int itemId) {
         SaleItem foundItem = findItem(itemId);
@@ -60,7 +60,7 @@ public class Sale {
     /**
      * Gets the running total of the sale.
      *
-     * @return
+     * @return The current running total.
      */
     public float getTotal() {
         float sum = 0;
@@ -73,7 +73,7 @@ public class Sale {
     /**
      * Gets the total including each item's tax.
      *
-     * @return
+     * @return The current running total including tax.
      */
     public float getTotalWithTax() {
         float sum = 0;
@@ -87,8 +87,8 @@ public class Sale {
     /**
      * Finalizes the sale, paying the given amount.
      *
-     * @param amount
-     * @return The difference between total and amount payed.
+     * @param amount The amount payed.
+     * @return The difference between taxed running total and amount payed.
      */
     public float pay(float amount) {
         float totalWithTax = getTotalWithTax();
