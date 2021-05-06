@@ -2,6 +2,9 @@ package se.kth.iv1350.sem3.model;
 
 import se.kth.iv1350.sem3.integrations.ItemDTO;
 
+/**
+ * Represents an item (type) that is being processed in a sale.
+ */
 public class SaleItem {
 
     private ItemDTO item;

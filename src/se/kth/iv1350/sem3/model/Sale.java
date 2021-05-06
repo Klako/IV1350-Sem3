@@ -8,12 +8,16 @@ import se.kth.iv1350.sem3.integrations.Inventory;
 import se.kth.iv1350.sem3.integrations.ItemDTO;
 import se.kth.iv1350.sem3.integrations.PurchasedItemDTO;
 import se.kth.iv1350.sem3.integrations.PaymentDTO;
+import se.kth.iv1350.sem3.integrations.SaleInfoHandler;
 import se.kth.iv1350.sem3.integrations.SaleInformationDTO;
 
+/**
+ * Represents a sale in progress.
+ */
 public class Sale {
 
+    private SaleInfoHandler saleInfoHandler;
     private Inventory inventory;
-    private Accounting accounting;
 
     private List<SaleItem> items;
 
@@ -23,9 +27,9 @@ public class Sale {
      * @param inventory
      * @param accounting
      */
-    public Sale(Inventory inventory, Accounting accounting) {
+    public Sale(Inventory inventory, SaleInfoHandler saleInfoHandler) {
+        this.saleInfoHandler = saleInfoHandler;
         this.inventory = inventory;
-        this.accounting = accounting;
         items = new LinkedList<>();
     }
 
@@ -33,7 +37,7 @@ public class Sale {
      * Adds a new item of the given type to the sale.
      *
      * @param itemId
-     * @return Information about the added item.s
+     * @return Information about the added items.
      */
     public ItemDisplayDTO addItem(int itemId) {
         SaleItem foundItem = findItem(itemId);
@@ -74,7 +78,8 @@ public class Sale {
     public float getTotalWithTax() {
         float sum = 0;
         for (SaleItem saleItem : items) {
-            sum += calculateNetPrice(saleItem.getItem()) * saleItem.getQuantity();
+            sum += calculateNetPrice(saleItem.getItem())
+                    * saleItem.getQuantity();
         }
         return sum;
     }
@@ -89,16 +94,17 @@ public class Sale {
         float totalWithTax = getTotalWithTax();
         float change = amount - totalWithTax;
         List<PurchasedItemDTO> purchasedItems = convertPurchasedItems();
-        accounting.logSale(new SaleInformationDTO(
+        SaleInformationDTO saleInfo = new SaleInformationDTO(
                 purchasedItems,
                 new PaymentDTO(amount, change)
-        ));
-        inventory.removeItems(purchasedItems);
+        );
+        saleInfoHandler.handle(saleInfo);
         return change;
     }
 
     private List<PurchasedItemDTO> convertPurchasedItems() {
         List<PurchasedItemDTO> purchasedItems = new ArrayList<>();
+
         for (SaleItem saleItem : items) {
             purchasedItems.add(new PurchasedItemDTO(
                     saleItem.getItem(),

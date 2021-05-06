@@ -1,5 +1,8 @@
 package se.kth.iv1350.sem3.integrations;
 
+/**
+ * A transfer object that represents the results of a payment.
+ */
 public class PaymentDTO {
 
     private float amount;
@@ -8,8 +11,8 @@ public class PaymentDTO {
     /**
      * Creates an object containing information about a payment.
      *
-     * @param amount
-     * @param change
+     * @param amount An amount payed.
+     * @param change An amount of payment change.
      */
     public PaymentDTO(float amount, float change) {
         this.amount = amount;
@@ -19,7 +22,7 @@ public class PaymentDTO {
     /**
      * Gets the amount paid.
      *
-     * @return
+     * @return The amount paid.
      */
     public float getAmount() {
         return amount;
@@ -28,7 +31,7 @@ public class PaymentDTO {
     /**
      * Gets the amount of change.
      *
-     * @return
+     * @return The amount of change.
      */
     public float getChange() {
         return change;

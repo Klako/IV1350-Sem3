@@ -2,6 +2,9 @@ package se.kth.iv1350.sem3.view;
 
 import se.kth.iv1350.sem3.controller.*;
 
+/**
+ * Class for handling the user interface.
+ */
 public class View {
 
     private Controller controller;
@@ -35,7 +38,7 @@ public class View {
         System.out.println("final total: " + total);
         float payment = 1000;
         System.out.println("payment: " + payment);
-        float change = controller.pay(1000);
+        float change = controller.pay(payment);
         System.out.println("change: " + change);
     }
 }

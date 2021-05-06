@@ -1,5 +1,8 @@
 package se.kth.iv1350.sem3.model;
 
+/**
+ * A transfer object that contains display information for an item.
+ */
 public class ItemDisplayDTO {
 
     private String description;

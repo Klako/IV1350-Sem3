@@ -2,6 +2,9 @@ package se.kth.iv1350.sem3.integrations;
 
 import java.util.List;
 
+/**
+ * A transfer object to compile log data for the accounting system.
+ */
 public class SaleInformationDTO {
 
     private List<PurchasedItemDTO> items;
@@ -10,8 +13,8 @@ public class SaleInformationDTO {
     /**
      * Creates a new object containing information about a finished sale.
      *
-     * @param items
-     * @param payment
+     * @param items A list of purchased items
+     * @param payment A sale payment.
      */
     public SaleInformationDTO(List<PurchasedItemDTO> items, PaymentDTO payment) {
         this.items = items;
@@ -21,7 +24,7 @@ public class SaleInformationDTO {
     /**
      * Gets the list of purchased items.
      *
-     * @return
+     * @return The list of purchased items
      */
     public List<PurchasedItemDTO> getItems() {
         return items;
@@ -30,7 +33,7 @@ public class SaleInformationDTO {
     /**
      * Gets the sale's payment information.
      *
-     * @return
+     * @return The sale payment
      */
     public PaymentDTO getPayment() {
         return payment;

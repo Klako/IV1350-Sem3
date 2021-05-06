@@ -1,5 +1,8 @@
 package se.kth.iv1350.sem3.integrations;
 
+/**
+ * A transfer object to compile log data for the accounting system.
+ */
 public class PurchasedItemDTO {
 
     private ItemDTO item;
@@ -9,8 +12,8 @@ public class PurchasedItemDTO {
      * Creates a new object containing information about a purchased type of
      * item.
      *
-     * @param item
-     * @param quantity
+     * @param item A purchased item.
+     * @param quantity A quantity of the item.
      */
     public PurchasedItemDTO(ItemDTO item, int quantity) {
         this.item = item;
@@ -20,7 +23,7 @@ public class PurchasedItemDTO {
     /**
      * Gets the purchased item type.
      *
-     * @return
+     * @return The purchased item.
      */
     public ItemDTO getItem() {
         return item;
@@ -29,7 +32,7 @@ public class PurchasedItemDTO {
     /**
      * Gets the quantity of purchased items.
      *
-     * @return
+     * @return The quantity of the item.
      */
     public int getQuantity() {
         return quantity;

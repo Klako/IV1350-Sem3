@@ -14,7 +14,11 @@ public class Main {
     public static void main(String[] args) {
         Inventory inventory = new Inventory();
         Accounting accounting = new Accounting();
-        Controller controller = new Controller(inventory, accounting);
+        Printer printer = new Printer();
+        SaleInfoHandler saleInfoHandler = new SaleInfoHandler(
+                accounting, inventory, printer
+        );
+        Controller controller = new Controller(inventory, saleInfoHandler);
         View view = new View(controller);
 
         view.processSale();
