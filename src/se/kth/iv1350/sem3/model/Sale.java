@@ -115,7 +115,7 @@ public class Sale {
     }
 
     private float calculateNetPrice(ItemDTO item) {
-        return item.getPrice() * (1 - item.getVat());
+        return item.getPrice() * (1 + item.getVat());
     }
 
     private SaleItem findItem(int itemId) {

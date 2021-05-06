@@ -62,8 +62,8 @@ public class ControllerTest {
         );
         ItemDTO item1 = inventory.getItem(1);
         ItemDTO item2 = inventory.getItem(3);
-        float totalWithTax = item1.getPrice() * (1 - item1.getVat())
-                + item2.getPrice() * (1 - item2.getVat());
+        float totalWithTax = item1.getPrice() * (1 + item1.getVat())
+                + item2.getPrice() * (1 + item2.getVat());
         Controller instance = new Controller(inventory, saleInfoHandler);
         instance.startNewSale();
         instance.registerItem(item1.getId());
@@ -84,8 +84,8 @@ public class ControllerTest {
         );
         ItemDTO item1 = inventory.getItem(5);
         ItemDTO item2 = inventory.getItem(3);
-        float totalWithTax = item1.getPrice() * (1 - item1.getVat())
-                + item2.getPrice() * (1 - item2.getVat());
+        float totalWithTax = item1.getPrice() * (1 + item1.getVat())
+                + item2.getPrice() * (1 + item2.getVat());
         Controller instance = new Controller(inventory, saleInfoHandler);
         instance.startNewSale();
         instance.registerItem(item1.getId());

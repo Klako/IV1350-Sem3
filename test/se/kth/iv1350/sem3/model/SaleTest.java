@@ -85,8 +85,8 @@ public class SaleTest {
         );
         ItemDTO item1 = inventory.getItem(1);
         ItemDTO item2 = inventory.getItem(3);
-        float totalWithTax = item1.getPrice() * (1 - item1.getVat())
-                + item2.getPrice() * (1 - item2.getVat());
+        float totalWithTax = item1.getPrice() * (1 + item1.getVat())
+                + item2.getPrice() * (1 + item2.getVat());
         Sale instance = new Sale(inventory, saleInfoHandler);
         instance.addItem(item1.getId());
         instance.addItem(item2.getId());
@@ -107,8 +107,8 @@ public class SaleTest {
         );
         ItemDTO item1 = inventory.getItem(1);
         ItemDTO item2 = inventory.getItem(3);
-        float totalWithTax = item1.getPrice() * (1 - item1.getVat())
-                + item2.getPrice() * (1 - item2.getVat());
+        float totalWithTax = item1.getPrice() * (1 + item1.getVat())
+                + item2.getPrice() * (1 + item2.getVat());
         Sale instance = new Sale(inventory, saleInfoHandler);
         instance.addItem(item1.getId());
         instance.addItem(item2.getId());
