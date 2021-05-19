@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import se.kth.iv1350.sem3.integrations.Accounting;
+import se.kth.iv1350.sem3.integrations.InvalidItemIdException;
 import se.kth.iv1350.sem3.integrations.Inventory;
 import se.kth.iv1350.sem3.integrations.ItemDTO;
 import se.kth.iv1350.sem3.integrations.PurchasedItemDTO;
@@ -25,7 +26,7 @@ public class Sale {
      * Initializes a new sale.
      *
      * @param inventory An inventory system integration
-     * @param saleInfoHandler A handler for the end sale information. 
+     * @param saleInfoHandler A handler for the end sale information.
      */
     public Sale(Inventory inventory, SaleInfoHandler saleInfoHandler) {
         this.saleInfoHandler = saleInfoHandler;
@@ -38,8 +39,9 @@ public class Sale {
      *
      * @param itemId The inventory id of an item.
      * @return Information about the added item.
+     * @throws InvalidItemIdException If the item cannot be found.
      */
-    public ItemDisplayDTO addItem(int itemId) {
+    public ItemDisplayDTO addItem(int itemId) throws InvalidItemIdException {
         SaleItem foundItem = findItem(itemId);
 
         if (foundItem == null) {

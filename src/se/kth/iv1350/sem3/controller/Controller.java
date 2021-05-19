@@ -1,5 +1,7 @@
 package se.kth.iv1350.sem3.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import se.kth.iv1350.sem3.model.*;
 import se.kth.iv1350.sem3.integrations.*;
 
@@ -12,6 +14,8 @@ public class Controller {
     private SaleInfoHandler saleInfoHandler;
 
     private Sale currentSale;
+
+    private List<TotalRevenueObserver> revenueObservers = new ArrayList<>();
 
     /**
      * Creates a new controller for handling sales.
@@ -37,7 +41,8 @@ public class Controller {
      * @param itemId The inventory ID of the item.
      * @return Information about the updated state of the sale.
      */
-    public ItemRegistrationDTO registerItem(int itemId) {
+    public ItemRegistrationDTO registerItem(int itemId)
+            throws InvalidItemIdException {
         ItemDisplayDTO itemInfo = currentSale.addItem(itemId);
         return new ItemRegistrationDTO(itemInfo, currentSale.getTotal());
     }
@@ -59,6 +64,24 @@ public class Controller {
      */
     public float pay(float amount) {
         float change = currentSale.pay(amount);
+        updateRevenueObservers();
         return change;
+    }
+
+    private void updateRevenueObservers() {
+        float currentTotal = currentSale.getTotalWithTax();
+        for (TotalRevenueObserver observer : revenueObservers) {
+            observer.update(currentTotal);
+        }
+    }
+
+    /**
+     * Adds a revenue observer to the controller.
+     *
+     * @param observer an observer that handles updates to the programs total
+     * revenue.
+     */
+    public void AddRevenueObserver(TotalRevenueObserver observer) {
+        revenueObservers.add(observer);
     }
 }

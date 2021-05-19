@@ -39,7 +39,7 @@ public class SaleItemTest {
      * Test of incrementQuantity method, of class SaleItem.
      */
     @Test
-    public void testIncrementQuantity() {
+    public void testIncrementQuantity() throws Exception {
         System.out.println("incrementQuantity");
         Inventory inventory = new Inventory();
         ItemDTO item = inventory.getItem(2);

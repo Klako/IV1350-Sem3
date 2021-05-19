@@ -26,7 +26,7 @@ public class ControllerTest {
      * Test of registerItem method, of class Controller.
      */
     @Test
-    public void testRegisterItem() {
+    public void testRegisterItem() throws Exception {
         System.out.println("registerItem");
         Inventory inventory = new Inventory();
         SaleInfoHandler saleInfoHandler = new SaleInfoHandler(
@@ -54,7 +54,7 @@ public class ControllerTest {
      * Test of calculateTotal method, of class Controller.
      */
     @Test
-    public void testCalculateTotal() {
+    public void testCalculateTotal() throws Exception {
         System.out.println("calculateTotal");
         Inventory inventory = new Inventory();
         SaleInfoHandler saleInfoHandler = new SaleInfoHandler(
@@ -76,7 +76,7 @@ public class ControllerTest {
      * Test of pay method, of class Controller.
      */
     @Test
-    public void testPay() {
+    public void testPay() throws Exception {
         System.out.println("pay");
         Inventory inventory = new Inventory();
         SaleInfoHandler saleInfoHandler = new SaleInfoHandler(

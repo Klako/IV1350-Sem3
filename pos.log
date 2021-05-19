@@ -1,0 +1,16 @@
+[2021-05-19 21:10:11] [WARNING] An item with item id 0 does not exist.
+	se.kth.iv1350.sem3.integrations.Inventory::getItem [74]
+	se.kth.iv1350.sem3.model.Sale::addItem [48]
+	se.kth.iv1350.sem3.controller.Controller::registerItem [46]
+	se.kth.iv1350.sem3.view.View::registerItem [52]
+	se.kth.iv1350.sem3.view.View::processSale1 [24]
+	se.kth.iv1350.sem3.startup.Main::main [36]
+ 
+[2021-05-19 21:10:11] [WARNING] An item with item id 0 does not exist.
+	se.kth.iv1350.sem3.integrations.Inventory::getItem [74]
+	se.kth.iv1350.sem3.model.Sale::addItem [48]
+	se.kth.iv1350.sem3.controller.Controller::registerItem [46]
+	se.kth.iv1350.sem3.view.View::registerItem [52]
+	se.kth.iv1350.sem3.view.View::processSale1 [26]
+	se.kth.iv1350.sem3.startup.Main::main [36]
+ 

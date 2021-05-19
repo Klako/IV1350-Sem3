@@ -42,7 +42,7 @@ public class SaleTest {
      * Test of addItem method, of class Sale.
      */
     @Test
-    public void testAddItem() {
+    public void testAddItem() throws Exception {
         System.out.println("addItem");
         Inventory inventory = new Inventory();
         SaleInfoHandler saleInfoHandler = new SaleInfoHandler(
@@ -59,7 +59,7 @@ public class SaleTest {
      * Test of getTotal method, of class Sale.
      */
     @Test
-    public void testGetTotal() {
+    public void testGetTotal() throws Exception {
         System.out.println("getTotal");
         Inventory inventory = new Inventory();
         SaleInfoHandler saleInfoHandler = new SaleInfoHandler(
@@ -78,7 +78,7 @@ public class SaleTest {
      * Test of getTotalWithTax method, of class Sale.
      */
     @Test
-    public void testGetTotalWithTax() {
+    public void testGetTotalWithTax() throws Exception {
         Inventory inventory = new Inventory();
         SaleInfoHandler saleInfoHandler = new SaleInfoHandler(
                 new Accounting(), inventory, new Printer()
@@ -98,7 +98,7 @@ public class SaleTest {
      * Test of pay method, of class Sale.
      */
     @Test
-    public void testPay() {
+    public void testPay() throws Exception {
         System.out.println("pay");
         float amount = 150;
         Inventory inventory = new Inventory();

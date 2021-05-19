@@ -11,12 +11,39 @@ public class Inventory {
 
     private Dictionary<Integer, InventoryItem> items;
 
+    private boolean serverActive;
+
     /**
      * Initializes a new inventory system.
      */
     public Inventory() {
         items = new Hashtable<>();
+        serverActive = true;
         addDefaultItems();
+    }
+
+    /**
+     * Sets wether the server is active or not.
+     *
+     * @param serverActive {@code true} if the server should be active or
+     * {@code false} if it should be inactive.
+     */
+    public void setServerActive(boolean serverActive) {
+        this.serverActive = serverActive;
+    }
+
+    /**
+     * @return {@code true} if the server is active or {@code false} if it is
+     * inactive.
+     */
+    public boolean getServerActive() {
+        return serverActive;
+    }
+
+    private void checkServer() throws InventoryServerException {
+        if (!serverActive) {
+            throw new InventoryServerException("The server is not running");
+        }
     }
 
     private void addDefaultItems() {
@@ -37,9 +64,16 @@ public class Inventory {
      *
      * @param itemId The inventory id of the item.
      * @return Information about an item.
+     * @throws InvalidItemIdException If the item cannot be found.
+     * @throws InventoryServerException If the server is inactive.
      */
-    public ItemDTO getItem(int itemId) {
-        return items.get(itemId).getItem();
+    public ItemDTO getItem(int itemId) throws InvalidItemIdException {
+        checkServer();
+        InventoryItem invItem = items.get(itemId);
+        if (invItem == null) {
+            throw new InvalidItemIdException(itemId);
+        }
+        return invItem.getItem();
     }
 
     /**
