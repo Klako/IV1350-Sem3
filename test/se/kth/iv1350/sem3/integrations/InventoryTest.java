@@ -1,5 +1,6 @@
 package se.kth.iv1350.sem3.integrations;
 
+import java.util.LinkedList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -51,26 +52,33 @@ public class InventoryTest {
     @Test
     public void testGetItem() throws Exception {
         System.out.println("getItem");
-        int itemId = 0;
+        int itemId = 1;
         Inventory instance = new Inventory();
-        ItemDTO expResult = null;
         ItemDTO result = instance.getItem(itemId);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(itemId, result.getId());
+        
+        int invalidItemid = 0;
+        try{
+            instance.getItem(invalidItemid);
+            fail("Didn't throw exception on bad item id");
+        } catch (InvalidItemIdException ex) {
+            assertEquals(invalidItemid, ex.getItemId());
+        } catch (Exception ex){
+            fail("Wrong exception");
+        }
+        
+        instance.setServerActive(false);
+        
+        try{
+            instance.getItem(itemId);
+            fail("Didn't throw exception on server inactive");
+        } catch (InventoryServerException ex){
+            assertTrue(
+                "Bad exception message, does not contain 'running'",
+                ex.getMessage().contains("running")
+            );
+        } catch (Exception ex){
+            fail("Wrong exception");
+        }
     }
-
-    /**
-     * Test of removeItems method, of class Inventory.
-     */
-    @Test
-    public void testRemoveItems() {
-        System.out.println("removeItems");
-        List<PurchasedItemDTO> items = null;
-        Inventory instance = new Inventory();
-        instance.removeItems(items);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }

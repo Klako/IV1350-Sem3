@@ -8,7 +8,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import se.kth.iv1350.sem3.controller.Controller;
 import se.kth.iv1350.sem3.integrations.Accounting;
+import se.kth.iv1350.sem3.integrations.InvalidItemIdException;
 import se.kth.iv1350.sem3.integrations.Inventory;
+import se.kth.iv1350.sem3.integrations.InventoryServerException;
 import se.kth.iv1350.sem3.integrations.ItemDTO;
 import se.kth.iv1350.sem3.integrations.Printer;
 import se.kth.iv1350.sem3.integrations.SaleInfoHandler;
@@ -53,6 +55,32 @@ public class SaleTest {
         ItemDisplayDTO result = instance.addItem(item1.getId());
         assertEquals(item1.getPrice(), result.getPrice(), 0.1);
         assertEquals(item1.getDescription(), result.getDescription());
+
+        int invalidItemid = 0;
+        try {
+            instance.addItem(invalidItemid);
+            fail("Didn't throw exception on bad item id");
+        } catch (InvalidItemIdException ex) {
+            assertEquals(invalidItemid, ex.getItemId());
+        } catch (Exception ex) {
+            fail("Wrong exception");
+        }
+        
+        ItemDTO item2 = inventory.getItem(3);
+        
+        inventory.setServerActive(false);
+
+        try {
+            instance.addItem(item2.getId());
+            fail("Didn't throw exception on server inactive");
+        } catch (InventoryServerException ex) {
+            assertTrue(
+                    "Bad exception message, does not contain 'running'",
+                    ex.getMessage().contains("running")
+            );
+        } catch (Exception ex) {
+            fail("Wrong exception");
+        }
     }
 
     /**
